@@ -15,10 +15,10 @@ nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
 
-pd.set_option("max_columns", None) # show all cols
-pd.set_option('max_colwidth', None) # show full width of showing cols
-pd.set_option("expand_frame_repr", False) # print cols side by side as it's supposed to be
-pd.set_option('display.max_colwidth', -1)
+# pd.set_option("max_columns", None) # show all cols
+# pd.set_option('max_colwidth', None) # show full width of showing cols
+# pd.set_option("expand_frame_repr", False) # print cols side by side as it's supposed to be
+# pd.set_option('display.max_colwidth', -1)
 
 text = "Assignment essays are developed from set questions that give students a period of time to research a topic and produce their answer with references to their sources of information. While there are some disadvantages with using assignment essays as an assessment tool, there are sound educational purposes underpinning this practice. This essay examines the reasons why assignment essays are beneficial for student learning and considers some of the problems with this method of assessment."
 
