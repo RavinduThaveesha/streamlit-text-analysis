@@ -2,7 +2,7 @@ import re
 import numpy as np
 import streamlit as st
 import nltk
-from nltk import word_tokenize, pos_tag
+from nltk import word_tokenize, pos_tag, sent_tokenize
 from collections import Counter
 import pandas as pd
 from wordcloud import WordCloud
@@ -47,6 +47,7 @@ def analyze_text(text):
     tokens = word_tokenize(text)
     pos_tags = pos_tag(tokens)
     clean_tokens = word_tokenize(clean_text)
+    sent_tokens = sent_tokenize(text)
 
     # Remove stop words
     stop_words = set(stopwords.words("english"))
@@ -79,8 +80,8 @@ def analyze_text(text):
 
     # Find the longest and shortest sentences
     sentences = text.split('.')
-    longest_sentence = max(sentences, key=len)
-    shortest_sentence = min(sentences, key=len)
+    longest_sentence = max(sent_tokens, key=len)
+    shortest_sentence = min(sent_tokens, key=len)
 
     # Find the most common words and their frequencies
     most_common_words = word_count.most_common(10)
@@ -100,7 +101,7 @@ if st.button("Analyze"):
     if user_input:
         total_word_count, unique_word_count, clean_word_count, nouns, noun_count, verbs, verb_count, longest_word, shortest_word, longest_sentence, shortest_sentence, most_common_words, word_count, adjectives, adjective_count, adverbs, adverb_count, preposition, preposition_count, misspelled_words = analyze_text(user_input)
 
-        wordcloud = generate_word_cloud(user_input)
+        # wordcloud = generate_word_cloud(user_input)
 
         st.write("---") 
 
@@ -159,3 +160,8 @@ if st.button("Analyze"):
                 st.write(word)
         else:
             st.write("No misspelled words found in the text.")
+
+        st.write("---") 
+        st.subheader("Sentences")
+        st.markdown(f'<p style="font-size:25px"><b>Longest Sentence:</b> <i>{longest_sentence}</i></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:25px"><b>Shortest Sentence:</b> <i>{shortest_sentence}</i></p>', unsafe_allow_html=True)
